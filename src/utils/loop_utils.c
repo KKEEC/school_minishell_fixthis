@@ -23,9 +23,13 @@ char	*get_input(void)
 {
 	char	*input;
 
-	input = readline("minishell$ ");
-	if (!input)
-		return (NULL);
+	   input = readline("minishell$ ");
+	   if (!input)
+	   {
+			   printf("exit\n");
+			   rl_clear_history();
+			   exit(0);
+	   }
 	if (*input == '\0')
 	{
 		free(input);

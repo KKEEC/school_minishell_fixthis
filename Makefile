@@ -28,9 +28,11 @@ SRC = ./src/main.c ./src/minishell_loop.c \
 ./src/tokenizer/helper_functions/expand_dollar.c \
 ./src/parser/parser.c \
 ./src/parser/parser_utils/is_syntax_error.c ./src/parser/parser_utils/is_redirection.c \
+./src/parser/parser_utils/heredoc_preprocess.c \
 ./src/parser/parser_utils/syntax_error_utils.c \
 ./src/parser/parser_utils/free_ast.c \
 ./src/parser/parser_utils/ast_nodes.c \
+./src/parser/parser_utils/heredocpreprocess_utils.c \
 ./src/parser/parser_utils/debug_utils.c \
 ./src/parser/parser_utils/parser_command_utils.c \
 ./src/executor/executor.c \

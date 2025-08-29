@@ -58,19 +58,19 @@ char	*read_heredoc_input(const char *delimiter, t_env *env_list, int *status)
 	char	*unquoted_delim;
 	int		should_expand;
 
-	should_expand = (env_list != NULL && !is_quoted_delimiter(delimiter));
-	content = init_heredoc_content(delimiter, &unquoted_delim);
-	if (!content)
-		return (NULL);
-	if (should_expand)
-		content = read_heredoc_loop(content, unquoted_delim, env_list, status);
-	else
-		content = read_heredoc_loop(content, unquoted_delim, NULL, status);
-	if (!content)
-	{
-		free(unquoted_delim);
-		return (NULL);
-	}
-	free(unquoted_delim);
-	return (content);
+	   should_expand = (env_list != NULL && !is_quoted_delimiter(delimiter));
+	   content = init_heredoc_content(delimiter, &unquoted_delim);
+	   if (!content)
+			   return (NULL);
+	   if (should_expand)
+			   content = read_heredoc_loop(content, unquoted_delim, env_list, status);
+	   else
+			   content = read_heredoc_loop(content, unquoted_delim, NULL, status);
+	   if (!content)
+	   {
+			   free(unquoted_delim);
+			   return (NULL);
+	   }
+	   free(unquoted_delim);
+	   return (content);
 }

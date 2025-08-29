@@ -21,7 +21,10 @@ char	*handle_single_quote(const char *input, size_t *i)
 	while (input[*i] && input[*i] != '\'')
 		(*i)++;
 	if (input[*i] != '\'')
+	{
+		ft_printstderr("minishell: syntax error: unclosed single quote\n");
 		return (NULL);
+	}
 	word = ft_strndup(&input[start], *i - start);
 	(*i)++;
 	if (!word)

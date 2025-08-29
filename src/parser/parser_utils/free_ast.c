@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
+#include <unistd.h>
 
 void	free_ast(t_ast *node)
 {
@@ -30,8 +31,14 @@ void	free_ast(t_ast *node)
 		}
 		free(node->args);
 	}
-	if (node->type == NODE_REDIR && node->filename)
-		free(node->filename);
+	   if (node->type == NODE_REDIR) {
+			   if (node->filename)
+					   free(node->filename);
+			   if (node->redir_type == TOKEN_HEREDOC && node->heredoc_tmpfile) {
+					   unlink(node->heredoc_tmpfile);
+					   free(node->heredoc_tmpfile);
+			   }
+	   }
 	free(node);
 	node = NULL;
 }

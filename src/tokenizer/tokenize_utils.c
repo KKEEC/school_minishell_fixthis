@@ -62,8 +62,13 @@ int	handle_quote_accumulation(t_tokenize_ctx *ctx)
 	part = handle_quotes(ctx);
 	if (!part)
 	{
-		free(*ctx->acc);
+		if(*ctx->acc)
+		{
+			free(*ctx->acc);
+			*ctx->acc = NULL;
+		}
 		free_tokens(*ctx->tokens);
+		*ctx->tokens = NULL;
 		return (0);
 	}
 	old_acc = *ctx->acc;

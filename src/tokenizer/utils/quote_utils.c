@@ -46,7 +46,10 @@ char	*handle_double_quote(const char *input, size_t *i, t_env *env_list,
 	start = ++(*i);
 	find_closing_quote(input, i);
 	if (input[*i] != '"')
+	{
+		ft_printstderr("minishell: syntax error: unclosed double quote\n");
 		return (NULL);
+	}
 	word = ft_strndup(&input[start], *i - start);
 	(*i)++;
 	if (!word)

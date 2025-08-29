@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:41:56 by kkc               #+#    #+#             */
-/*   Updated: 2025/08/28 17:38:53 by kkc              ###   ########.fr       */
+/*   Updated: 2025/08/29 18:33:21 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	is_delimiter(const char *line, const char *delimiter)
 	size_t	delimiter_len;
 
 	delimiter_len = ft_strlen(delimiter);
-	return (ft_strlen(line) == delimiter_len
-		&& ft_strcmp(line, delimiter) == 0);
+	return (ft_strlen(line) == delimiter_len && ft_strcmp(line,
+			delimiter) == 0);
 }
 
 char	*append_line_to_content(char *content, char *line)
@@ -58,19 +58,19 @@ char	*read_heredoc_input(const char *delimiter, t_env *env_list, int *status)
 	char	*unquoted_delim;
 	int		should_expand;
 
-	   should_expand = (env_list != NULL && !is_quoted_delimiter(delimiter));
-	   content = init_heredoc_content(delimiter, &unquoted_delim);
-	   if (!content)
-			   return (NULL);
-	   if (should_expand)
-			   content = read_heredoc_loop(content, unquoted_delim, env_list, status);
-	   else
-			   content = read_heredoc_loop(content, unquoted_delim, NULL, status);
-	   if (!content)
-	   {
-			   free(unquoted_delim);
-			   return (NULL);
-	   }
-	   free(unquoted_delim);
-	   return (content);
+	should_expand = (env_list != NULL && !is_quoted_delimiter(delimiter));
+	content = init_heredoc_content(delimiter, &unquoted_delim);
+	if (!content)
+		return (NULL);
+	if (should_expand)
+		content = read_heredoc_loop(content, unquoted_delim, env_list, status);
+	else
+		content = read_heredoc_loop(content, unquoted_delim, NULL, status);
+	if (!content)
+	{
+		free(unquoted_delim);
+		return (NULL);
+	}
+	free(unquoted_delim);
+	return (content);
 }

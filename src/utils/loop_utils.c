@@ -6,7 +6,7 @@
 /*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:50:23 by kkc               #+#    #+#             */
-/*   Updated: 2025/08/27 16:09:04 by plimbu           ###   ########.fr       */
+/*   Updated: 2025/08/29 19:33:43 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ char	*get_input(void)
 {
 	char	*input;
 
-	   input = readline("minishell$ ");
-	   if (!input)
-	   {
-			   printf("exit\n");
-			   rl_clear_history();
-			   exit(0);
-	   }
+	input = readline("minishell$ ");
+	if (!input)
+	{
+		printf("exit\n");
+		rl_clear_history();
+		exit(0);
+	}
 	if (*input == '\0')
 	{
 		free(input);

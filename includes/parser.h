@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:55:36 by plimbu            #+#    #+#             */
-/*   Updated: 2025/08/27 16:10:59 by kkc              ###   ########.fr       */
+/*   Updated: 2025/08/29 18:25:03 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ typedef struct s_ast
 t_ast				*parse_tokens(t_token *tokens);
 t_ast				*parse_command_segment(t_token **tokens);
 
-
 // Heredoc preprocessing
-void preprocess_heredocs(t_ast *ast, t_env *env_list);
+void				preprocess_heredocs(t_ast *ast, t_env *env_list);
 // AST node constructor functions
 
 t_ast				*new_command_node(void);
@@ -64,7 +63,7 @@ int					handle_pipe_redir_error(t_token *token);
 void				write_token_error(t_token *token);
 void				write_pipe_in_error(t_token *token);
 
-// debug function to print ast tree                              
+// debug function to print ast tree
 
 void				print_indent(int depth);
 void				print_ast(t_ast *node, int depth);
@@ -80,8 +79,8 @@ t_ast				*process_tokens(t_token *tokens, char *input);
 t_ast				*handle_input(t_env *env_list, int *status);
 
 //preprocess for heredoc
-char	*join_and_free(char *s1, char *s2);
-char	*heredoc_filename_prefix(int pid);
-char	*heredoc_filename_suffix(char *prefix, int counter);
+char				*join_and_free(char *s1, char *s2);
+char				*heredoc_filename_prefix(int pid);
+char				*heredoc_filename_suffix(char *prefix, int counter);
 
 #endif

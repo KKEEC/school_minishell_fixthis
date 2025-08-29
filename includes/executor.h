@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:59:57 by kkc               #+#    #+#             */
-/*   Updated: 2025/08/28 16:13:02 by kkc              ###   ########.fr       */
+/*   Updated: 2025/08/29 18:25:55 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		handle_plus_equal(char *plus_equal, char *key, t_env **env_list);
 void		handle_equal(char *equal, char *key, t_env **env_list);
 void		update_key_val(char *str, char *key, t_env **env_list);
 
-// Redirection execution functions and core pipe 
+// Redirection execution functions and core pipe
 
 int			execute_redirin(t_ast *ast, t_env **env_list);
 int			execute_redirout(t_ast *ast, t_env **env_list);
@@ -75,13 +75,14 @@ int			handle_output_file(t_redir_info *redirs, int i, int *final_fd);
 int			handle_append_file(t_redir_info *redirs, int i, int *final_fd);
 
 //heredoc utilities
-char	*get_unquoted_delimiter(const char *delimiter);
-int	is_quoted_delimiter(const char *delimiter);
-char	*read_heredoc_loop(char *content, const char *unquoted_delim,
-	t_env *env_list, int *status);
-char	*read_heredoc_input(const char *delimiter, t_env *env_list, int *status);
-char	*append_line_to_content(char *content, char *line);
-int	is_delimiter(const char *line, const char *delimiter);
+char		*get_unquoted_delimiter(const char *delimiter);
+int			is_quoted_delimiter(const char *delimiter);
+char		*read_heredoc_loop(char *content, const char *unquoted_delim,
+				t_env *env_list, int *status);
+char		*read_heredoc_input(const char *delimiter, t_env *env_list,
+				int *status);
+char		*append_line_to_content(char *content, char *line);
+int			is_delimiter(const char *line, const char *delimiter);
 
 //String utilities for export
 

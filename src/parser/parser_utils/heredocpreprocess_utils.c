@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   heredocpreprocess_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 00:00:00 by kkc               #+#    #+#             */
-/*   Updated: 2025/08/29 00:00:00 by kkc              ###   ########.fr       */
+/*   Updated: 2025/08/29 18:33:39 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
 char	*join_and_free(char *s1, char *s2)
 {
-	char *res;
+	char	*res;
 
 	res = ft_strjoin(s1, s2);
 	free(s1);
@@ -26,8 +26,8 @@ char	*join_and_free(char *s1, char *s2)
 
 char	*heredoc_filename_prefix(int pid)
 {
-	char *pid_str;
-	char *res;
+	char	*pid_str;
+	char	*res;
 
 	pid_str = ft_itoa(pid);
 	if (!pid_str)
@@ -39,9 +39,9 @@ char	*heredoc_filename_prefix(int pid)
 
 char	*heredoc_filename_suffix(char *prefix, int counter)
 {
-	char *cnt_str;
-	char *tmp;
-	char *res;
+	char	*cnt_str;
+	char	*tmp;
+	char	*res;
 
 	cnt_str = ft_itoa(counter);
 	if (!cnt_str)

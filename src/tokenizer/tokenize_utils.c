@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:48:22 by kkc               #+#    #+#             */
-/*   Updated: 2025/08/27 15:48:26 by kkc              ###   ########.fr       */
+/*   Updated: 2025/08/29 19:38:51 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tokenizer.h"
 #include "../../includes/env.h"
+#include "../../includes/tokenizer.h"
 
 void	handle_whitespace(t_tokenize_ctx *ctx)
 {
@@ -43,12 +43,7 @@ int	handle_word_accumulation(t_tokenize_ctx *ctx)
 	else
 		*ctx->acc = ft_strdup(part);
 	if (!*ctx->acc)
-	{
-		free(old_acc);
-		free(part);
-		free_tokens(*ctx->tokens);
-		return (0);
-	}
+		return (free(old_acc), free(part), free_tokens(*ctx->tokens), 0);
 	free(old_acc);
 	free(part);
 	return (1);
@@ -62,7 +57,7 @@ int	handle_quote_accumulation(t_tokenize_ctx *ctx)
 	part = handle_quotes(ctx);
 	if (!part)
 	{
-		if(*ctx->acc)
+		if (*ctx->acc)
 		{
 			free(*ctx->acc);
 			*ctx->acc = NULL;
@@ -77,15 +72,8 @@ int	handle_quote_accumulation(t_tokenize_ctx *ctx)
 	else
 		*ctx->acc = ft_strdup(part);
 	if (!*ctx->acc)
-	{
-		free(old_acc);
-		free(part);
-		free_tokens(*ctx->tokens);
-		return (0);
-	}
-	free(old_acc);
-	free(part);
-	return (1);
+		return (free(old_acc), free(part), free_tokens(*ctx->tokens), 0);
+	return (free(old_acc), free(part), 1);
 }
 
 void	handle_special_finalize(t_tokenize_ctx *ctx)

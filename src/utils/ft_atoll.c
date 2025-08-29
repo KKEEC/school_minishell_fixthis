@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkc <kkc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: plimbu <plimbu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:50:35 by kkc               #+#    #+#             */
-/*   Updated: 2025/08/28 15:20:01 by kkc              ###   ########.fr       */
+/*   Updated: 2025/08/29 21:52:51 by plimbu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long long	ft_atoll(const char *str, int *overflow)
 {
-	int	sign;
+	int			sign;
 	long long	result;
 
 	sign = 1;
@@ -31,15 +31,9 @@ long long	ft_atoll(const char *str, int *overflow)
 	while (*str >= '0' && *str <= '9')
 	{
 		if (sign == 1 && (result > (LLONG_MAX - (*str - '0')) / 10))
-		{
-			*overflow = 1;
-			return (LLONG_MAX);
-		}
+			return (*overflow = 1, LLONG_MAX);
 		if (sign == -1 && (-result < (LLONG_MIN + (*str - '0')) / 10))
-		{
-			*overflow = 1;
-			return (LLONG_MIN);
-		}
+			return (*overflow = 1, LLONG_MIN);
 		result = result * 10 + (*str - '0');
 		str++;
 	}
